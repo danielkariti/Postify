@@ -1,43 +1,31 @@
 const express = require ('express');
 const bodyParser = require ('body-parser');
+const mongoose= require ('mongoose');
+const postsRoutes = require ('./routes/posts');
 
 const app = express();
 
+// Connection to MongoDB
+mongoose.connect('mongodb+srv://admin:tpLLd4zzSqIhN6eX@cluster0.3okcl.mongodb.net/node-angular?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => {
+  console.log('Connected to database!');
+})
+.catch(() => {
+  console.log('Connection failed!');
+});
+
+// Set headers to deal with CORS
 app.use((req,res,next)=> {
   res.setHeader("Access-Control-Allow-Origin","*");
   res.setHeader("Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");
-  res.setHeader("Access-Control-Allow-Methods","GET,POST,PATCH,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods","GET,POST,PATCH,PUT,DELETE,OPTIONS");
   next();
 });
+
+// Bodyparser for json objects
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
-app.post("/posts",(req,res,next)=>{
-  const post = req.body;
-  console.log(post)
-  res.status(201).json({
-    message: 'Post added successfully'
-  });
-});
-
-app.get("/posts",(req,res,next)=>{
-  const posts = [
-    {
-      id:"123",
-      title:"My first post",
-      content:"Hey, its me the 1st post"
-    },
-    {
-      id:"1787",
-      title:"My post",
-      content:"Hey, nononoononno"
-    },
-  ];
-
-  res.status(200).json({
-    message: 'Post fetched successfully',
-    posts: posts
-  });
-});
+app.use("/posts",postsRoutes);
 
 module.exports =  app;
