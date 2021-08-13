@@ -4,8 +4,10 @@
     <mat-expansion-panel-header>
      {{post.title}}
     </mat-expansion-panel-header>
-     {{post.content}}
-
+    <div class="post-image">
+      <img [src]="post.imagePath" [alt]="post.title">
+    </div>
+    <p>{{post.content}}</p>
      <mat-action-row>
       <button mat-button color="primary"><a [routerLink]="['/edit-post',post.id]">Edit</a></button>
       <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button>
