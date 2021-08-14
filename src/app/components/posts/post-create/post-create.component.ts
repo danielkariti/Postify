@@ -1,15 +1,17 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormControl, FormGroup , Validators } from "@angular/forms";
 import { ActivatedRoute, ParamMap } from "@angular/router";
+import { Subscription } from "rxjs";
 import { Post } from "src/app/models/post.model";
 import { PostsService } from "src/app/services/posts.service";
+import { UserService } from "src/app/services/user.service";
 import { fileType } from "./file-type.validator"
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.css']
 })
-export class PostCreateComponent implements OnInit{
+export class PostCreateComponent implements OnInit, OnDestroy{
   enteredContent = '';
   enteredTitle = '';
   post: Post;
@@ -18,14 +20,18 @@ export class PostCreateComponent implements OnInit{
   imagePreview: string;
   private mode = 'create';
   private postId :string;
+  private authStatusSub: Subscription;
 
-  constructor(public postsService: PostsService, public route: ActivatedRoute){}
+  constructor(public postsService: PostsService, public route: ActivatedRoute, private userService: UserService){}
 
   ngOnInit(): void {
-
+    this.authStatusSub = this.userService.getAuthStatusListener().subscribe(
+      authStatus => {
+        this.isLoading = false;
+      }
+    );
     // Programatically create a reactive form.
     this.createFormControls();
-
 
     this.route.paramMap.subscribe((paramMap:ParamMap) => {
         if(paramMap.has('postId')){
@@ -38,7 +44,8 @@ export class PostCreateComponent implements OnInit{
               id: postData._id,
               title: postData.title,
               content: postData.content,
-              imagePath: postData.imagePath
+              imagePath: postData.imagePath,
+              creator: postData.creator
             };
             this.form.setValue({
              title: this.post.title,
@@ -100,5 +107,9 @@ createFormControls(){
         asyncValidators: [fileType]
       })
     });
+  }
+
+  ngOnDestroy(){
+    this.authStatusSub.unsubscribe();
   }
 }
