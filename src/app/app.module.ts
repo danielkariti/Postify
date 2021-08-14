@@ -2,7 +2,7 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 // ANGULAR COMPONENTS IMPORTS
@@ -23,6 +23,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { AuthInterceptor } from './interceptors/auth-interceptor';
 
 
 
@@ -57,7 +58,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
+    { provide : HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+
 ],
   bootstrap: [AppComponent]
 })

@@ -2,14 +2,17 @@
     <span><a routerLink="">Postify</a></span>
     <span class="spacer"></span>
     <ul>
-      <li>
+      <li *ngIf="isUserAuthenticated">
         <a mat-button routerLink="/create-post" routerLinkActive="mat-accent">Create New Post</a>
       </li>
-      <li>
+      <li *ngIf="!isUserAuthenticated">
         <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
       </li>
-      <li>
+      <li *ngIf="!isUserAuthenticated">
         <a mat-button routerLink="/register" routerLinkActive="mat-accent">Register</a>
+      </li>
+      <li *ngIf="isUserAuthenticated">
+        <button mat-button (click)="logout()">Logout</button>
       </li>
     </ul>
 </mat-toolbar>

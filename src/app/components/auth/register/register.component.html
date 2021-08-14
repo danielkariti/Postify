@@ -58,9 +58,7 @@
         required>
         <mat-error *ngIf="addressInput.invalid">Please enter a valid address</mat-error>
       </mat-form-field>
-
-      <button mat-raised-button color="accent" type="submit">Register</button>
-
+      <button mat-raised-button color="accent" type="submit" *ngIf="!isLoading">Register</button>
   </form>
 </mat-card>
 

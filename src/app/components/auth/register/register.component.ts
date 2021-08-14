@@ -16,6 +16,7 @@ export class RegisterComponent{
     if (form.invalid){
       return;
     }
+    this.isLoading = true;
     this.userService
     .createUser(
       form.value.email,
