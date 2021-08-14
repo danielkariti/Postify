@@ -1,7 +1,7 @@
 <mat-card>
   <mat-spinner *ngIf="isLoading"></mat-spinner>
   <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!isLoading">
-      <mat-form-field>
+      <mat-form-field appearance="legacy">
         <input
          matInput
          type="text"
@@ -16,7 +16,7 @@
       <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid" >
         <img [src]="imagePreview" [alt]="form.value.title">
       </div>
-      <mat-form-field>
+      <mat-form-field appearance="legacy">
         <textarea matInput
         rows="6"
         formControlName="content"

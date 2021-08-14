@@ -3,11 +3,15 @@ const express = require ('express');
 const bodyParser = require ('body-parser');
 const mongoose= require ('mongoose');
 const postsRoutes = require ('./routes/posts');
+const userRoutes = require ('./routes/user');
+
 
 const app = express();
 
 // Connection to MongoDB
-mongoose.connect('mongodb+srv://admin:tpLLd4zzSqIhN6eX@cluster0.3okcl.mongodb.net/node-angular?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+.connect('mongodb+srv://admin:tpLLd4zzSqIhN6eX@cluster0.3okcl.mongodb.net/node-angular?retryWrites=true&w=majority',
+{ useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
   console.log('Connected to database!');
 })
@@ -26,7 +30,11 @@ app.use((req,res,next)=> {
 // Bodyparser for json objects
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
+
 app.use("/images", express.static(path.join("backend/images")));
+
+
 app.use("/posts",postsRoutes);
+app.use("/user",userRoutes);
 
 module.exports =  app;

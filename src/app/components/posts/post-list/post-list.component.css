@@ -11,6 +11,10 @@ mat-spinner{
   margin: auto;
 }
 
+mat-paginator{
+  margin-top:  1rem;
+}
+
 a{
   text-decoration: none;
 }
@@ -23,3 +27,4 @@ a{
   width:100%;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
+

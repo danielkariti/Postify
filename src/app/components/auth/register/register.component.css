@@ -1,0 +1,11 @@
+mat-form-field{
+  width:100%;
+}
+
+mat-spinner{
+  margin: auto;
+}
+
+button {
+  margin-top: 0.5rem;
+}

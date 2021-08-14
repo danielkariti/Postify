@@ -1,0 +1,66 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <form (submit)="register(registerForm)" #registerForm="ngForm" *ngIf="!isLoading">
+      <mat-form-field appearance="legacy">
+        <input
+         matInput
+         type="email"
+         name="email"
+         ngModel
+         placeholder="Enter your email address"
+         #emailInput="ngModel"
+         required
+         email>
+        <mat-error *ngIf="emailInput.invalid">Please enter a valid email address</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input
+        matInput
+        type="password"
+        placeholder="Enter your password"
+        name="password"
+        ngModel
+        #passwordInput="ngModel"
+        required
+        minlength="5">
+        <mat-error *ngIf="passwordInput.invalid">Please enter a valid password</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input
+        matInput
+        type="text"
+        placeholder="Enter your full name"
+        name="fullName"
+        ngModel
+        #fullNameInput="ngModel"
+        required>
+        <mat-error *ngIf="fullNameInput.invalid">Please enter your full name</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input
+        matInput
+        type="date"
+        placeholder="Enter your date of birth"
+        name="birthDate"
+        ngModel
+        #birthDateInput="ngModel"
+        required>
+        <mat-error *ngIf="birthDateInput.invalid">Please enter a valid date</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="legacy">
+        <input
+        matInput
+        type="text"
+        placeholder="Enter your full address"
+        name="address"
+        ngModel
+        #addressInput="ngModel"
+        required>
+        <mat-error *ngIf="addressInput.invalid">Please enter a valid address</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="accent" type="submit">Register</button>
+
+  </form>
+</mat-card>
+
