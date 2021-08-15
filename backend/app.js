@@ -10,7 +10,7 @@ const app = express();
 
 // Connection to MongoDB
 mongoose
-.connect('mongodb+srv://admin:tpLLd4zzSqIhN6eX@cluster0.3okcl.mongodb.net/node-angular?retryWrites=true&w=majority',
+.connect('mongodb+srv://admin:' + process.env.MONGO_ATLAS_PW + '@cluster0.3okcl.mongodb.net/node-angular?retryWrites=true&w=majority',
 { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
   console.log('Connected to database!');

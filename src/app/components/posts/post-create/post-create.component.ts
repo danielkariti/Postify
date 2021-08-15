@@ -6,6 +6,7 @@ import { Post } from "src/app/models/post.model";
 import { PostsService } from "src/app/services/posts.service";
 import { UserService } from "src/app/services/user.service";
 import { fileType } from "./file-type.validator"
+
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
@@ -18,6 +19,7 @@ export class PostCreateComponent implements OnInit, OnDestroy{
   isLoading = false;
   form : FormGroup;
   imagePreview: string;
+  uploadSelectClicked = false;
   private mode = 'create';
   private postId :string;
   private authStatusSub: Subscription;
@@ -72,7 +74,7 @@ export class PostCreateComponent implements OnInit, OnDestroy{
   }
 
   onSavePost(){
-    if(this.form.invalid){
+    if(this.form.invalid || !this.form.value.image){
       return;
     }
     this.isLoading = true;

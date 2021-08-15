@@ -2,9 +2,11 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Subject } from "rxjs";
+import { environment } from "src/environments/environment";
 import { AuthData } from "../models/auth-data.model";
 import { UserData } from "../models/user.model";
 
+const BACKEND_URL =environment.apiUrl + "/user/";
 @Injectable({ providedIn: "root" })
 export class UserService {
   private isAuthenticated = false;
@@ -23,7 +25,7 @@ export class UserService {
       birthDate: birthDate,
       address: address
     }
-    this.http.post("http://localhost:3000/user/register", userData)
+    this.http.post(BACKEND_URL + "register", userData)
     .subscribe(() => {
       this.router.navigate(["/"]);
     }, error => {
@@ -37,7 +39,7 @@ export class UserService {
       email: email,
       password: password,
     }
-    this.http.post<{token: string, expiresIn: number , userId: string }>("http://localhost:3000/user/login",authData)
+    this.http.post<{token: string, expiresIn: number , userId: string }>(BACKEND_URL + "login",authData)
     .subscribe(response => {
       const token = response.token;
       this.token = token;

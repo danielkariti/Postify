@@ -1,6 +1,6 @@
 const jwt = require ("jsonwebtoken");
 
-const salt="{riUV(a<cl8aa0qP!@D+";
+const salt=process.env.JWT_KEY;
 
 module.exports = (req, res, next) => {
   try {

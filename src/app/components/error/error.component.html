@@ -1,8 +1,11 @@
-<h1 mat-dialog-title>An error occured!</h1>
-<div mat-dialog-content>
-  <p class="mat-body-1"> {{ data.message }} </p>
-</div>
-<div mat-dialog-actions >
-  <button mat-button mat-dialog-close> Okay </button>
-</div>
 
+<div class="frame">
+  <div class="modal">
+    <img src="https://100dayscss.com/codepen/alert.png" width="44" height="38" />
+		<span mat-dialog-title class="title">Oh snap!</span>
+		<p class="mat- body-1">{{ data.message }}</p>
+    <div mat-dialog-actions >
+      <div class="button"><button mat-button mat-dialog-close> Dismiss </button> </div>
+    </div>
+  </div>
+</div>
