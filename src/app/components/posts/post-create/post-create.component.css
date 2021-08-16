@@ -21,3 +21,10 @@ input[type="file"]{
 button {
   margin-top: 0.5rem;
 }
+
+@media screen and (min-width: 850px){
+  mat-card{
+    width: 50%;
+    margin-left: 25%;
+  }
+}

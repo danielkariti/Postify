@@ -8,13 +8,12 @@ import { HttpClientModule,
          HTTP_INTERCEPTORS }       from '@angular/common/http';
 import { NgModule,
          CUSTOM_ELEMENTS_SCHEMA}   from '@angular/core';
-
-// ANGULAR COMPONENTS IMPORTS
 import { AppComponent }         from './app.component';
 import { HeaderComponent }      from './components/header/header.component';
 import { ErrorComponent }       from './components/error/error.component';
 import {AngularMaterialModule}  from './modules/angular-material.module'
 import {PostsModule}            from './modules/posts.module'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +27,7 @@ import {PostsModule}            from './modules/posts.module'
     BrowserAnimationsModule,
     AngularMaterialModule,
     PostsModule,
+
   ],
   exports:[
   ],

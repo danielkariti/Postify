@@ -10,6 +10,10 @@ import {MatPaginatorModule}       from '@angular/material/paginator';
 import {MatDialogModule}          from '@angular/material/dialog';
 import {MatFormFieldModule,
   MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import {MatSlideToggleModule}     from '@angular/material/slide-toggle';
+import {MatMenuModule}            from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+
 
 @NgModule({
   exports:[
@@ -22,7 +26,10 @@ import {MatFormFieldModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatMenuModule,
+    MatSidenavModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

@@ -27,13 +27,13 @@ a{
   width:100%;
   box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
-@media screen and (min-width: 1100px){
+@media screen and (min-width: 850px){
   .accordion{
-    width: 80%;
-    margin-left: 10rem;
+    width: 50%;
+    margin-left: 25%;
   }
   mat-paginator{
-    margin-right: 10rem;
+    margin-right: 25%;
   }
 
 }
